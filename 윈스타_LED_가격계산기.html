@@ -310,24 +310,25 @@
 <script>
 const PRODUCTS = [
   // STAR 시리즈 — 캐비닛 640×480mm, 모듈 320×160mm, 6모듈/캐비닛
-  { model:'STAR-S250P', type:'SMD', pitch:'2.5mm', price:960000,  cw:640, ch:480, series:'STAR',    partNo:'25702201' },
-  { model:'STAR-S200P', type:'SMD', pitch:'2.0mm', price:1240000, cw:640, ch:480, series:'STAR',    partNo:'25702202' },
-  { model:'STAR-S186P', type:'SMD', pitch:'1.86mm',price:1550000, cw:640, ch:480, series:'STAR',    partNo:'25702203' },
-  { model:'STAR-S153P', type:'SMD', pitch:'1.53mm',price:1950000, cw:640, ch:480, series:'STAR',    partNo:'25702204' },
-  { model:'STAR-S125P', type:'SMD', pitch:'1.25mm',price:2600000, cw:640, ch:480, series:'STAR',    partNo:'25702205' },
-  { model:'STAR-G250P', type:'GOB', pitch:'2.5mm', price:1580000, cw:640, ch:480, series:'STAR',    partNo:'25702206' },
-  { model:'STAR-G200P', type:'GOB', pitch:'2.0mm', price:1800000, cw:640, ch:480, series:'STAR',    partNo:'25702207' },
-  { model:'STAR-G186P', type:'GOB', pitch:'1.86mm',price:2080000, cw:640, ch:480, series:'STAR',    partNo:'25702208' },
-  { model:'STAR-G153P', type:'GOB', pitch:'1.53mm',price:2470000, cw:640, ch:480, series:'STAR',    partNo:'25702209' },
-  { model:'STAR-G125P', type:'GOB', pitch:'1.25mm',price:2850000, cw:640, ch:480, series:'STAR',    partNo:'25702210' },
+  { model:'STAR-S250P', type:'SMD', pitch:'2.5mm', price:960000,  cw:640, ch:480, series:'STAR',    partNo:'25702201', power:140 },
+  { model:'STAR-S200P', type:'SMD', pitch:'2.0mm', price:1240000, cw:640, ch:480, series:'STAR',    partNo:'25702202', power:135 },
+  { model:'STAR-S186P', type:'SMD', pitch:'1.86mm',price:1550000, cw:640, ch:480, series:'STAR',    partNo:'25702203', power:135 },
+  { model:'STAR-S153P', type:'SMD', pitch:'1.53mm',price:1950000, cw:640, ch:480, series:'STAR',    partNo:'25702204', power:178 },
+  { model:'STAR-S125P', type:'SMD', pitch:'1.25mm',price:2600000, cw:640, ch:480, series:'STAR',    partNo:'25702205', power:178 },
+  { model:'STAR-G250P', type:'GOB', pitch:'2.5mm', price:1580000, cw:640, ch:480, series:'STAR',    partNo:'25702206', power:140 },
+  { model:'STAR-G200P', type:'GOB', pitch:'2.0mm', price:1800000, cw:640, ch:480, series:'STAR',    partNo:'25702207', power:135 },
+  { model:'STAR-G186P', type:'GOB', pitch:'1.86mm',price:2080000, cw:640, ch:480, series:'STAR',    partNo:'25702208', power:135 },
+  { model:'STAR-G153P', type:'GOB', pitch:'1.53mm',price:2470000, cw:640, ch:480, series:'STAR',    partNo:'25702209', power:178 },
+  { model:'STAR-G125P', type:'GOB', pitch:'1.25mm',price:2850000, cw:640, ch:480, series:'STAR',    partNo:'25702210', power:178 },
   // LEDSTAR 시리즈 — 캐비닛 600×337.5mm, 모듈 300×168.75mm, 4모듈/캐비닛
-  { model:'LEDSTAR-S187', type:'SMD', pitch:'1.875mm',  price:1450000, cw:600, ch:337.5, series:'LEDSTAR', partNo:'26090181' },
-  { model:'LEDSTAR-S156', type:'SMD', pitch:'1.5625mm', price:1880000, cw:600, ch:337.5, series:'LEDSTAR', partNo:'26090182' },
-  { model:'LEDSTAR-S125', type:'SMD', pitch:'1.25mm',   price:2500000, cw:600, ch:337.5, series:'LEDSTAR', partNo:'26090183' },
-  { model:'LEDSTAR-C187', type:'COB', pitch:'1.875mm',  price:1550000, cw:600, ch:337.5, series:'LEDSTAR', partNo:'26090184' },
-  { model:'LEDSTAR-C156', type:'COB', pitch:'1.5625mm', price:1980000, cw:600, ch:337.5, series:'LEDSTAR', partNo:'26090185' },
-  { model:'LEDSTAR-C125', type:'COB', pitch:'1.25mm',   price:2900000, cw:600, ch:337.5, series:'LEDSTAR', partNo:'26090186' },
+  { model:'LEDSTAR-S187', type:'SMD', pitch:'1.875mm',  price:1450000, cw:600, ch:337.5, series:'LEDSTAR', partNo:'26090181', power:150 },
+  { model:'LEDSTAR-S156', type:'SMD', pitch:'1.5625mm', price:1880000, cw:600, ch:337.5, series:'LEDSTAR', partNo:'26090182', power:150 },
+  { model:'LEDSTAR-S125', type:'SMD', pitch:'1.25mm',   price:2500000, cw:600, ch:337.5, series:'LEDSTAR', partNo:'26090183', power:150 },
+  { model:'LEDSTAR-C187', type:'COB', pitch:'1.875mm',  price:1550000, cw:600, ch:337.5, series:'LEDSTAR', partNo:'26090184', power:150 },
+  { model:'LEDSTAR-C156', type:'COB', pitch:'1.5625mm', price:1980000, cw:600, ch:337.5, series:'LEDSTAR', partNo:'26090185', power:150 },
+  { model:'LEDSTAR-C125', type:'COB', pitch:'1.25mm',   price:2900000, cw:600, ch:337.5, series:'LEDSTAR', partNo:'26090186', power:150 },
 ];
+
 
 let selectedType = 'ALL';
 let selectedProduct = null;
@@ -445,6 +446,9 @@ function calculate() {
   const actualW = cols * p.cw;
   const actualH = rows * p.ch;
   const totalPrice = total * p.price;
+  const totalPowerW = total * p.power;
+  const totalPowerKW = (totalPowerW / 1000).toFixed(2);
+  const monthlyKwh = (totalPowerW * 8 * 30 / 1000).toFixed(0); // 하루 8시간 × 30일
 
   area.innerHTML = `
     <div class="result-card">
@@ -470,6 +474,16 @@ function calculate() {
           <div class="value total-price">₩${fmt(totalPrice)}</div>
           <div class="sub">₩${fmt(p.price)} × ${total}개</div>
         </div>
+        <div class="result-item">
+          <div class="label">⚡ 총 소비전력 (최대)</div>
+          <div class="value" style="color:#7eb8ff">${fmt(totalPowerW)}<span style="font-size:14px;opacity:0.7"> W</span></div>
+          <div class="sub">${p.power}W × ${total}개 = ${totalPowerKW} kW</div>
+        </div>
+        <div class="result-item">
+          <div class="label">📅 월 예상 전력량</div>
+          <div class="value" style="color:#7eb8ff">${fmt(Number(monthlyKwh))}<span style="font-size:14px;opacity:0.7"> kWh</span></div>
+          <div class="sub">하루 8시간 × 30일 기준</div>
+        </div>
       </div>
       <div class="result-detail">
         <strong>입력 크기:</strong> ${fmt(w)} × ${fmt(h)} mm &nbsp;|&nbsp;
@@ -477,7 +491,8 @@ function calculate() {
         <strong>캐비닛 단가:</strong> ₩${fmt(p.price)} &nbsp;|&nbsp;
         <strong>캐비닛 규격:</strong> ${p.cw}×${p.ch}mm (${p.series} 시리즈)<br>
         <strong>부품번호:</strong> ${p.partNo} &nbsp;|&nbsp;
-        <strong>유효기간:</strong> 2028.03.31
+        <strong>유효기간:</strong> 2028.03.31 &nbsp;|&nbsp;
+        <strong>캐비닛당 정격소비전력:</strong> ${p.power}W 이하
         ${actualW !== w || actualH !== h ? `<br>⚠️ 캐비닛 단위로 올림 적용: 입력값보다 <strong style="color:#ffd700">${fmt(actualW-w)}mm 가로 / ${fmt(actualH-h)}mm 세로</strong> 크게 구성됩니다.` : ''}
       </div>
     </div>`;
